@@ -123,7 +123,7 @@ class MedicalCode extends HTMLElement {
     );
     if (!sender) return "";
 
-    const medicalCode = `Mã YT: ${PROVINCE_MEDICAL_CODE}/${year}/${soLuuTru}`;
+    const medicalCode = `Mã YT: ${PROVINCE_MEDICAL_CODE}/${sender.hopitalCode}/${year}/${soLuuTru}`;
     this.innerHTML = `<div>${medicalCode}</div>`;
   }
 }
