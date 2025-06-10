@@ -107,7 +107,7 @@ const PROVINCE_MEDICAL_CODE = "509";
 
 class MedicalCode extends HTMLElement {
   static get observedAttributes() {
-    return ["sender-code", "year", "so-luu-tru"];
+    return ["sender-code", "yy", "append-code"];
   }
 
   connectedCallback() {
@@ -116,14 +116,14 @@ class MedicalCode extends HTMLElement {
 
   render() {
     const senderCode = this.getAttribute("sender-code") || "";
-    const year = this.getAttribute("year") || "";
-    const soLuuTru = this.getAttribute("so-luu-tru") || "";
+    const yy = this.getAttribute("yy") || "";
+    const appendCode = this.getAttribute("append-code") || "";
     const sender = DREPORT_SENDERS.find(
       (item) => item.senderCode === senderCode
     );
     if (!sender) return "";
 
-    const medicalCode = `Mã YT: ${PROVINCE_MEDICAL_CODE}/${sender.hopitalCode}/${year}/${soLuuTru}`;
+    const medicalCode = `Mã YT: ${PROVINCE_MEDICAL_CODE}/${sender.hopitalCode}/${yy}/${appendCode}`;
     this.innerHTML = `<div>${medicalCode}</div>`;
   }
 }
