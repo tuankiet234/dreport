@@ -1,4 +1,4 @@
-const senders = [
+const DREPORT_SENDERS = [
   {
     senderCode: "54001",
     senderName: "BỆNH VIỆN ĐA KHOA TỈNH PHÚ YÊN",
@@ -118,7 +118,9 @@ class MedicalCode extends HTMLElement {
     const senderCode = this.getAttribute("sender-code") || "";
     const year = this.getAttribute("year") || "";
     const soLuuTru = this.getAttribute("so-luu-tru") || "";
-    const sender = senders.find((item) => item.senderCode === senderCode);
+    const sender = DREPORT_SENDERS.find(
+      (item) => item.senderCode === senderCode
+    );
     if (!sender) return "";
 
     const medicalCode = `Mã YT: ${PROVINCE_MEDICAL_CODE}/${year}/${soLuuTru}`;
@@ -127,5 +129,3 @@ class MedicalCode extends HTMLElement {
 }
 
 customElements.define("medical-code", MedicalCode);
-
-console.log("MedicalCode component loaded");
