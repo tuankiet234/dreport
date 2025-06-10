@@ -128,4 +128,28 @@ class MedicalCode extends HTMLElement {
   }
 }
 
+class ParentName extends HTMLElement {
+  static get observedAttributes() {
+    return ["sender-code", "parent-name", "class-name"];
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    const className = this.getAttribute("class-name") || "";
+    const parentName = this.getAttribute("parent-name") || "";
+    if (!!parentName) return `<div class="${className}">${parentName}</div>`;
+
+    const senderCode = this.getAttribute("sender-code") || "";
+    const sender = DREPORT_SENDERS.find(
+      (item) => item.senderCode === senderCode
+    );
+
+    return `<div class="fw-bold">${sender?.parentName}</div>`;
+  }
+}
+
 customElements.define("medical-code", MedicalCode);
+customElements.define("parent-name", ParentName);
