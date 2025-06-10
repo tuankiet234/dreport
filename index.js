@@ -127,3 +127,5 @@ class MedicalCode extends HTMLElement {
 }
 
 customElements.define("medical-code", MedicalCode);
+
+console.log("MedicalCode component loaded");
