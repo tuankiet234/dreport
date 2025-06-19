@@ -154,5 +154,64 @@ class ParentName extends HTMLElement {
   }
 }
 
+class SquareBox extends HTMLElement {
+  static get observedAttributes() {
+    return ["label", "width", "height", "value", "className"];
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    const label = this.getAttribute("label") || "";
+    const width = this.getAttribute("width") || "20px";
+    const height = this.getAttribute("height") || "20px";
+    const value = this.getAttribute("value") || "";
+    const className = this.getAttribute("className") || "";
+
+    this.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center ${className}">
+                <div>${label}</div>
+                <div class="d-flex justify-content-center align-items-center border border-1 border-black ml-1" style="width: ${width}; height: ${height}">
+                    ${value}
+                </div>
+            </div>
+        `;
+  }
+}
+
+class SquareBoxs extends HTMLElement {
+  static get observedAttributes() {
+    return ["width", "height", "values"];
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    const width = this.getAttribute("width") || "20px";
+    const height = this.getAttribute("height") || "20px";
+    const values = this.getAttribute("values") || "";
+    const htmlBoxs = Array.from(values.toString())
+      .map(
+        (value) => `
+            <div class="d-flex justify-content-center align-items-center border border-1 border-black ml-1" style="width: ${width}; height: ${height}">
+                ${value.trim()}
+            </div>
+        `
+      )
+      .join("");
+    this.innerHTML = `
+            <div class="d-flex">
+                ${htmlBoxs}
+            </div>
+        `;
+  }
+}
+
 customElements.define("medical-code", MedicalCode);
 customElements.define("parent-name", ParentName);
+customElements.define("square-box", SquareBox);
+customElements.define("square-boxs", SquareBoxs);
