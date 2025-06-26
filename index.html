@@ -1,0 +1,167 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mẫu In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="w-[21cm] m-auto">
+        <div class="page">
+            <div class="flex justify-between">
+                <div>BỆNH VIỆN SẢN NHI</div>
+                <div class="font-bold flex flex-col items-center text-xl">
+                    <div>PHIẾU SÀNG LỌC VÀ ĐÁNH GIÁ</div>
+                    <div>DINH DƯỠNG BỆNH NHI</div>
+                </div>
+                <div class="flex flex-col">
+                    <div>MS: DD-06</div>
+                    <div>Số vào viện: .....</div>
+                    <div>Mã người bệnh: .....</div>
+                </div>
+            </div>
+            <div class="flex justify-between pt-10">
+                <div>Họ và tên người bệnh: .... </div>
+                <div>Tuổi: ....</div>
+                <dr-single-check-box data-label-1="Nam" data-value-1="1" data-label-2="Nữ" data-value-2="2" value="2"
+                    label-position="right"></dr-single-check-box>
+            </div>
+            <div class="flex justify-between">
+                <div>Khoa:</div>
+                <div>Phòng:</div>
+                <div>Giường:</div>
+            </div>
+            <div>Chẩn đoán:</div>
+            <div class="flex justify-between">
+                <div>Cân nặng: (kg)</div>
+                <div>Chiều cao: (cm)</div>
+                <div>BMI:</div>
+            </div>
+            <div class="flex justify-between">
+                <div>Cân nặng chuẩn so với tuổi: (SD)</div>
+                <div>Chiều cao chuẩn so với tuổi: (SD) <span class="italic text-sm">(Theo hướng dẫn của Tổ chức Y tế thế
+                        giới)</span></div>
+            </div>
+            <div class="flex gap-2">
+                <div class="font-bold">Phần I: Sàng lọc nguy cơ suy dinh dưỡng (SDD)</div>
+                <div>(Phần dành cho Điều dưỡng)</div>
+            </div>
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th class="text-center">Yếu tố nguy cơ</th>
+                        <th class="text-center w-[190px]">Điểm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-1">
+                            Người bệnh (NB) có bệnh lý nền gây nguy cơ SDD hoặc dự kiến phẫu thuật?
+                        </td>
+                        <td>
+                            <div class="flex justify-between">
+                                <dr-single-check-box data-label-1="Không" data-value-1="1" data-label-2="Có"
+                                    data-value-2="2" value="2" label-position="right"></dr-single-check-box>
+                                <div>(2 điểm)</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-1">
+                            Khám lâm sàng có mất lớp mỡ dưới da và/hoặc teo cơ…
+                        </td>
+                        <td>
+                            <div class="flex justify-between">
+                                <dr-single-check-box data-label-1="Không" data-value-1="1" data-label-2="Có"
+                                    data-value-2="2" value="2" label-position="right"></dr-single-check-box>
+                                <div>(1 điểm)</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-1">
+                            <div>Khi có ít nhất 01 trong các yếu tố sau:</div>
+                            <div>- Tiêu chảy (> 5 ngày) và/hoặc nôn (> 3 lần/ngày) kéo dài 1-3 ngày</div>
+                            <div>- Ăn hoặc bú giảm kéo dài 1-3 ngày</div>
+                            <div>- Đã can thiệp DD trước đó (như bổ sung DD qua miệng hoặc qua ống thông)</div>
+                            <div>- Không thể thu nạp đủ dinh dưỡng do đau</div>
+                        </td>
+                        <td>
+                            <div class="flex justify-between">
+                                <dr-single-check-box data-label-1="Không" data-value-1="1" data-label-2="Có"
+                                    data-value-2="2" value="2" label-position="right"></dr-single-check-box>
+                                <div>(1 điểm)</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-1">
+                            Có bị sụt cân (mọi lứa tuổi) và/hoặc không tăng cân/ chiều cao (trẻ em < 1 tuổi) trong vòng
+                                3 tháng gần đây? </td>
+                        <td>
+                            <div class="flex justify-between">
+                                <dr-single-check-box data-label-1="Không" data-value-1="1" data-label-2="Có"
+                                    data-value-2="2" value="2" label-position="right"></dr-single-check-box>
+                                <div>(1 điểm)</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="font-bold">Tổng điểm: ...</div>
+            <div class="font-bold">Kết quả</div>
+            <div>- Nguy cơ thấp: 0 điểm (Kết thúc đánh giá và đánh giá lại sau 7 ngày).</div>
+            <div>- Nguy cơ trung bình: từ 1 - 3 điểm (Khuyến cáo can thiệp DD, cân lại người bệnh 2 lần/tuần và đánh giá
+                lại nguy cơ mỗi tuần).</div>
+            <div>- Đã can thiệp DD trước đó (như bổ sung DD qua miệng hoặc qua ống thông)</div>
+            <div>- Nguy cơ cao: từ 4-5 điểm (Mời hội chẩn DD).</div>
+            <div class="w-full flex justify-end pr-[100px] pt-3">
+                <div class="flex flex-col items-center">
+                    <div class="italic">Ngày ... tháng ... năm</div>
+                    <dr-signature position="Điều dưỡng"
+                        sign-image="/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCADSAaQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKWmnPrj8KWgBaKTNI0iIu52Cj1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hf6jMy2KeTCv/LWZMBv908g8gg1U0/TLjVit9q8YV+cRhg3qOqn2FdN074q2lEChHo1uLhbiZ5Z5V4VnIGBnPRQB1q/jHAHFKOOlHHXHNRdvcAIzR+NJUM15b24JmnijA6l3Ax+dCjfYCxRmsWXxZ4ehHz63p+fRbhSfyBqsPGuiSA/Zpri4bsIbOZx+YQ1ShLsB0dFcdP4s1syIth4SvLhGOGd5DDt98MnPf8qrTf8ACbalNtRP7Mgf73MM2AT+B6H9Kr2T6uwHbySpEu53VV9WOBWdda/ptoCWu4XYfwJIpb8s1g2fgOF5RNrF19vc/NjyzFhuuflb6/nXT2enWthEI7WPy1AxjJP8z7UNQj1uBzl740bBXT9K1C4fsy2+9PzDfWoYbrxlqHzRx2Voh/56RSK36gjt+tdnj1owD1FHOlsgOXXwxeXv/IX1KSUHqsWwA/8AjgPYVLa+BNAtJVmS0dpF5DNM/rnscV0dLik6sn1AjihSFAkYwqjAGafRS1ABSYwMUtFIBMYpaMUUwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAENZmtaHZ65bfZ7tCP7sigb15BOCQcZwK0+9HQU0+XYDmLDRdb0WF47PVheIcbUvYmkZev8AF5gHc9uwpj6l4vRsDQ7aUf3hMq/oXNdVx0xRn0q1U7pMDlv7Q8Xt00e1Q/7Uob/2cVLC3i6bIlOnW4P/AE7s5H5TV0gpabq/3UByF34X12/OZPFE0APUWsbx/kfNPr/KoV+Hcbr/AKX4j164Y9d10MH8CD3rtPwox7mp9pJbAc9aeCPD9qOdOt7g/wB6eCNj+e2taDSdOtf+PewtYf8ArnCq/wAhVsUtJzk9WwECgUuB6UUVIBRRRQAUUUUAFFFFABRRRRYAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWikAUUUUwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z"
+                        sign-info="UID=CCCD:054084002565,CN=BIỀN BỬU NGỌC,T=Nhân Viên,O=BIỀN BỬU NGỌC,L=Thành phố Tuy Hoà,ST=Phú Yên,C=VN"></dr-signature>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <div class="font-bold">Phần II: Xác nhận kế hoạch chăm sóc DD</div>
+                <div>(Phần dành cho bác sỹ)</div>
+            </div>
+            <div class="grid grid-flow-col grid-rows-2 gap-x-4">
+                <div>
+                    <dr-single-check-box data-label-1="Bổ sung DD qua miệng" data-value-1="1"
+                        data-label-position="right"></dr-single-check-box>
+                </div>
+                <div>
+                    <dr-single-check-box data-label-1="Chế độ DD qua ống thông" data-value-1="1"
+                        data-label-position="right"></dr-single-check-box>
+                </div>
+                <div>
+                    <dr-single-check-box data-label-1="Chế độ DD qua tĩnh mạch toàn phần" data-value-1="1"
+                        data-label-position="right"></dr-single-check-box>
+                </div>
+                <div>
+                    <dr-single-check-box data-label-1="Chế độ DD qua tĩnh mạch bổ sung" data-value-1="1"
+                        data-label-position="right"></dr-single-check-box>
+                </div>
+                <div>
+                    <dr-single-check-box data-label-1="Hội chẩn DD" data-value-1="1"
+                        data-label-position="right"></dr-single-check-box>
+                </div>
+            </div>
+            <div class="w-full flex justify-end pr-[100px] pt-3">
+                <div class="flex flex-col items-center">
+                    <div class="italic">Ngày ... tháng ... năm</div>
+                    <dr-signature position="Bác sỹ"
+                        sign-image="/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCADSAaQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKWmnPrj8KWgBaKTNI0iIu52Cj1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hf6jMy2KeTCv/LWZMBv908g8gg1U0/TLjVit9q8YV+cRhg3qOqn2FdN074q2lEChHo1uLhbiZ5Z5V4VnIGBnPRQB1q/jHAHFKOOlHHXHNRdvcAIzR+NJUM15b24JmnijA6l3Ax+dCjfYCxRmsWXxZ4ehHz63p+fRbhSfyBqsPGuiSA/Zpri4bsIbOZx+YQ1ShLsB0dFcdP4s1syIth4SvLhGOGd5DDt98MnPf8qrTf8ACbalNtRP7Mgf73MM2AT+B6H9Kr2T6uwHbySpEu53VV9WOBWdda/ptoCWu4XYfwJIpb8s1g2fgOF5RNrF19vc/NjyzFhuuflb6/nXT2enWthEI7WPy1AxjJP8z7UNQj1uBzl740bBXT9K1C4fsy2+9PzDfWoYbrxlqHzRx2Voh/56RSK36gjt+tdnj1owD1FHOlsgOXXwxeXv/IX1KSUHqsWwA/8AjgPYVLa+BNAtJVmS0dpF5DNM/rnscV0dLik6sn1AjihSFAkYwqjAGafRS1ABSYwMUtFIBMYpaMUUwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAENZmtaHZ65bfZ7tCP7sigb15BOCQcZwK0+9HQU0+XYDmLDRdb0WF47PVheIcbUvYmkZev8AF5gHc9uwpj6l4vRsDQ7aUf3hMq/oXNdVx0xRn0q1U7pMDlv7Q8Xt00e1Q/7Uob/2cVLC3i6bIlOnW4P/AE7s5H5TV0gpabq/3UByF34X12/OZPFE0APUWsbx/kfNPr/KoV+Hcbr/AKX4j164Y9d10MH8CD3rtPwox7mp9pJbAc9aeCPD9qOdOt7g/wB6eCNj+e2taDSdOtf+PewtYf8ArnCq/wAhVsUtJzk9WwECgUuB6UUVIBRRRQAUUUUAFFFFABRRRRYAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWikAUUUUwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z"
+                        sign-info="UID=CCCD:054084002565,CN=BIỀN BỬU NGỌC,T=Nhân Viên,O=BIỀN BỬU NGỌC,L=Thành phố Tuy Hoà,ST=Phú Yên,C=VN"></dr-signature>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

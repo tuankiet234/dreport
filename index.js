@@ -1,4 +1,8 @@
-const DREPORT_SENDERS = [
+const tailwindcssScriptTag = document.createElement("script");
+tailwindcssScriptTag.src = `https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4`;
+document.body.appendChild(tailwindcssScriptTag);
+
+const DR_SENDERS = [
   {
     senderCode: "54001",
     senderName: "BỆNH VIỆN ĐA KHOA TỈNH PHÚ YÊN",
@@ -103,11 +107,14 @@ const DREPORT_SENDERS = [
   },
 ];
 
-const PROVINCE_MEDICAL_CODE = "509";
+const DR_PROVINCE_MEDICAL_CODE = "509";
+const drGetSender = (maBenhVien) => {
+  return DR_SENDERS.find((item) => item.senderCode === maBenhVien);
+};
 
-class MedicalCode extends HTMLElement {
+class DrMedicalCode extends HTMLElement {
   static get observedAttributes() {
-    return ["sender-code", "yy", "append-code"];
+    return ["medical-code", "year", "code", "class-name", "label"];
   }
 
   connectedCallback() {
@@ -115,22 +122,22 @@ class MedicalCode extends HTMLElement {
   }
 
   render() {
-    const senderCode = this.getAttribute("sender-code") || "";
-    const yy = this.getAttribute("yy") || "";
-    const appendCode = this.getAttribute("append-code") || "";
-    const sender = DREPORT_SENDERS.find(
-      (item) => item.senderCode === senderCode
-    );
-    if (!sender) return "";
+    const medicalCode = this.getAttribute("medical-code") || "";
+    const year = this.getAttribute("year") || "";
+    const code = this.getAttribute("code") || "";
+    const className = this.getAttribute("class-name") || "";
+    const label = this.getAttribute("label") || "";
 
-    const medicalCode = `Mã YT: ${PROVINCE_MEDICAL_CODE}/${sender.hopitalCode}/${yy}/${appendCode}`;
-    this.innerHTML = `<div>${medicalCode}</div>`;
+    this.innerHTML = `<div class="${className}">${
+      label === "" ? "Mã YT" : label
+    }: ${DR_PROVINCE_MEDICAL_CODE}/${
+      drGetSender(medicalCode)?.hopitalCode
+    }/${year}/${code}</div>`;
   }
 }
-
-class ParentName extends HTMLElement {
+class DrParentName extends HTMLElement {
   static get observedAttributes() {
-    return ["sender-code", "parent-name", "class-name"];
+    return ["medical-code", "parent-name", "class-name"];
   }
 
   connectedCallback() {
@@ -138,80 +145,206 @@ class ParentName extends HTMLElement {
   }
 
   render() {
+    const medicalCode = this.getAttribute("medical-code") || "";
     const className = this.getAttribute("class-name") || "";
     const parentName = this.getAttribute("parent-name") || "";
+
     if (!!parentName) {
-      this.innerHTML = `<div class="${className}">${parentName}</div>`;
+      this.innerHTML = `<div class="font-bold ${className}">${parentName}</div>`;
       return;
     }
 
-    const senderCode = this.getAttribute("sender-code") || "";
-    const sender = DREPORT_SENDERS.find(
-      (item) => item.senderCode === senderCode
-    );
-
-    this.innerHTML = `<div class="fw-bold">${sender?.parentName}</div>`;
+    this.innerHTML = `<div class="font-bold ${className}">${
+      drGetSender(medicalCode)?.parentName
+    }</div>`;
   }
 }
-
-class SquareBox extends HTMLElement {
+class DrSingleCheckBox extends HTMLElement {
   static get observedAttributes() {
-    return ["label", "width", "height", "value", "className"];
+    return ["size", "class-name", "value", "label", "label-position"];
   }
 
   connectedCallback() {
-    this.render();
-  }
+    const options = Object.keys(this.dataset)
+      .filter((key) => key.startsWith("label-"))
+      .map((key) => ({
+        label: this.dataset[key],
+        value: this.dataset[key.replace("label-", "value-")],
+      }));
 
-  render() {
-    const label = this.getAttribute("label") || "";
-    const width = this.getAttribute("width") || "20px";
-    const height = this.getAttribute("height") || "20px";
+    const size = this.getAttribute("size") || "20px";
     const value = this.getAttribute("value") || "";
-    const className = this.getAttribute("className") || "";
+    const label = this.getAttribute("label") || "";
+    const labelPosition = this.getAttribute("label-position") || "left";
+    const dataLabelPosition = this.dataset.labelPosition || "left";
+    const className = this.getAttribute("class-name") || "";
 
-    this.innerHTML = `
-            <div class="d-flex justify-content-center align-items-center ${className}">
-                <div>${label}</div>
-                <div class="d-flex justify-content-center align-items-center border border-1 border-black ml-1" style="width: ${width}; height: ${height}">
-                    ${value}
+    this.innerHTML = `<div class="flex justify-between px-1 gap-2 ${className}">
+      ${label !== "" && labelPosition === "left" ? `<div>${label}</div>` : ""}
+      ${options
+        .map(
+          (option) => `
+      <div class="flex items-center">
+                ${
+                  dataLabelPosition === "left"
+                    ? `<div class="mr-1">${option.label}</div>`
+                    : ""
+                }
+                <div class="border border-solid border-black size-[${size}] flex justify-center items-center">
+                    ${option.value === value ? "X" : ""}
                 </div>
+                ${
+                  dataLabelPosition === "right"
+                    ? `<div class="ml-1">${option.label}</div>`
+                    : ""
+                }
             </div>
-        `;
+    `
+        )
+        .join("\n")}
+      ${label !== "" && labelPosition === "right" ? `<div>${label}</div>` : ""}
+    </div>`;
   }
 }
-
-class SquareBoxs extends HTMLElement {
+class DrItemCodeBoxes extends HTMLElement {
   static get observedAttributes() {
-    return ["width", "height", "values"];
+    return ["size", "class-name", "label", "code"];
   }
 
   connectedCallback() {
-    this.render();
+    const size = this.getAttribute("size") || "20px";
+    const value = this.getAttribute("value") || "";
+    const label = this.getAttribute("label") || "";
+    const code = this.getAttribute("code") || "";
+    const className = this.getAttribute("class-name") || "";
+
+    this.innerHTML = `
+      <div class="flex justify-between items-center px-1 ${className}">
+        <div>${label}: ${value}</div>
+        <div class="flex justify-end gap-1">
+          ${Array.from(code.toString())
+            .map(
+              (value) => `
+                  <div class="flex justify-center items-center border border-black size-[${size}]">
+                      ${value.trim()}
+                  </div>
+              `
+            )
+            .join("")}
+        </div>
+      </div>
+    `;
+  }
+}
+class DrHealthTable extends HTMLElement {
+  static get observedAttributes() {
+    return ["class-name"];
+  }
+  connectedCallback() {
+    const className = this.getAttribute("class-name") || "";
+    // Calculate BMI if values are valid
+    let bmi = "";
+    try {
+      // Parse weight (cannang) and height (chieucao) from dataset
+      const cannang = parseFloat(this.dataset.cannang);
+      const chieucao = parseFloat(this.dataset.chieucao);
+      if (!isNaN(cannang) && !isNaN(chieucao) && chieucao > 0) {
+        bmi = (cannang / (chieucao / 100) ** 2).toFixed(1);
+      }
+    } catch {
+      // If there's an error in parsing or calculation, bmi will remain an empty string
+      bmi = "";
+    }
+
+    this.innerHTML = `
+    <div class="px-1 ${className}">
+      <table class="border w-[300px] italic">
+        <tr class="border">
+          <td class="p-1">Mạch</td>
+          <td>${this.dataset.mach ?? ""}</td>
+          <td class="text-right p-1">lần/ph</td>
+        </tr>
+        <tr class="border">
+          <td class="p-1">Nhiệt độ</td>
+          <td>${this.dataset.nhietdo ?? ""}</td>
+          <td class="text-right p-1">℃</td>
+        </tr>
+        <tr class="border">
+          <td class="p-1">Huyết áp</td>
+          <td>${this.dataset.huyetap ?? ""}</td>
+          <td class="text-right p-1">mmHg</td>
+        </tr>
+        <tr class="border">
+          <td class="p-1">Nhịp thở</td>
+          <td>${this.dataset.nhiptho ?? ""}</td>
+          <td class="text-right p-1">lần/ph</td>
+        </tr>
+        <tr class="border">
+          <td class="p-1">Cân nặng</td>
+          <td>${this.dataset.cannang ?? ""}</td>
+          <td class="text-right p-1">kg</td>
+        </tr>
+        <tr class="border">
+          <td class="p-1">Chiều cao</td>
+          <td>${this.dataset.chieucao ?? ""}</td>
+          <td class="text-right p-1">cm</td>
+        </tr>
+        <tr class="border">
+          <td class="p-1">BMI</td>
+          <td>${bmi}</td>
+          <td class="text-right p-1"></td>
+        </tr>
+      </table>
+    </div>
+    `;
+  }
+}
+class DrSignature extends HTMLElement {
+  static get observedAttributes() {
+    return [
+      "class-name",
+      "signed-order",
+      "width",
+      "height",
+      "sign-image",
+      "sign-info",
+      "position",
+    ];
   }
 
-  render() {
-    const width = this.getAttribute("width") || "20px";
-    const height = this.getAttribute("height") || "20px";
-    const values = this.getAttribute("values") || "";
-    const htmlBoxs = Array.from(values.toString())
-      .map(
-        (value) => `
-            <div class="d-flex justify-content-center align-items-center border border-1 border-black ml-1" style="width: ${width}; height: ${height}">
-                ${value.trim()}
-            </div>
-        `
-      )
-      .join("");
+  connectedCallback() {
+    const className = this.getAttribute("class-name") || "";
+    const position = this.getAttribute("position") || "";
+    const width = this.getAttribute("width") || "150";
+    const height = this.getAttribute("height") || "80";
+    const signImage = this.getAttribute("sign-image") || "";
+    const signInfo = this.getAttribute("sign-info") || "";
+
+    let signHtml = "";
+    if (signImage !== "") {
+      signHtml = `<img src="data:image/png;base64,${signImage}" width="${width}" height="${height}">`;
+    }
+    let signerName = "";
+    if (signInfo !== "") {
+      const signInfoObj = Object.fromEntries(
+        signInfo.split(",").map((item) => item.split("="))
+      );
+      signerName = signInfoObj.CN;
+    }
+
     this.innerHTML = `
-            <div class="d-flex">
-                ${htmlBoxs}
-            </div>
-        `;
+      <div class="flex flex-col justify-between items-center px-1 ${className}"> 
+        <div class="font-bold">${position}</div>
+        <div>${signHtml}</div>
+        <div>${signerName}</div>
+      </div>
+    `;
   }
 }
 
-customElements.define("medical-code", MedicalCode);
-customElements.define("parent-name", ParentName);
-customElements.define("square-box", SquareBox);
-customElements.define("square-boxs", SquareBoxs);
+customElements.define("dr-single-check-box", DrSingleCheckBox);
+customElements.define("dr-item-code-boxes", DrItemCodeBoxes);
+customElements.define("dr-medical-code", DrMedicalCode);
+customElements.define("dr-parent-name", DrParentName);
+customElements.define("dr-health-table", DrHealthTable);
+customElements.define("dr-signature", DrSignature);

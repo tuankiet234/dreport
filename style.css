@@ -1,0 +1,17 @@
+@media print {
+  .page {
+    padding: 0px !important;
+    border: 0px !important;
+    page-break-inside: avoid;
+  }
+}
+.page {
+    width: 100%;
+    height: 29.7cm;
+    border: solid black 1px;
+    padding: 10px
+}
+body {
+    font-size: 12pt;
+    font-family: 'Times New Roman', Times, serif;
+}
