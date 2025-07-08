@@ -309,6 +309,7 @@ class DrSignature extends HTMLElement {
       "sign-image",
       "sign-info",
       "position",
+      "signer-when-not-signed",
     ];
   }
 
@@ -319,12 +320,15 @@ class DrSignature extends HTMLElement {
     const height = this.getAttribute("height") || "80";
     const signImage = this.getAttribute("sign-image") || "";
     const signInfo = this.getAttribute("sign-info") || "";
+    const signerWhenNotSigned =
+      this.getAttribute("signer-when-not-signed") || "";
 
-    let signHtml = "";
-    if (signImage !== "") {
-      signHtml = `<img src="data:image/png;base64,${signImage}" width="${width}" height="${height}">`;
-    }
-    let signerName = "";
+    const signHtml =
+      signImage !== ""
+        ? `<img src="data:image/png;base64,${signImage}" width="${width}" height="${height}">`
+        : `<div class="w-[${width}] h-[${height}]"></div>`;
+
+    let signerName = signerWhenNotSigned;
     if (signInfo !== "") {
       const signInfoObj = Object.fromEntries(
         signInfo.split(",").map((item) => item.split("="))
